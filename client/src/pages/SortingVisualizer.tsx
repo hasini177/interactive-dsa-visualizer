@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 type SortAlgorithm = "bubble" | "selection" | "insertion";
 
 export default function SortingVisualizer() {
-  const [algorithm, setAlgorithm] = useState<SortAlgorithm>("bubble");
+  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>(null);
   const [arrayInput, setArrayInput] = useState("64, 34, 25, 12, 22, 11, 90");
   
   const [currentArr, setCurrentArr] = useState<number[]>([]);
@@ -27,8 +27,22 @@ export default function SortingVisualizer() {
   const [isRunning, setIsRunning] = useState(false);
   const [viewMode, setViewMode] = useState<'console' | 'code'>('console');
 
+  const algorithmNames: Record<SortAlgorithm, string> = {
+    bubble: "BUBBLE SORT",
+    selection: "SELECTION SORT",
+    insertion: "INSERTION SORT"
+  };
+
+  const algorithmDescriptions: Record<SortAlgorithm, string> = {
+    bubble: "Compare adjacent elements and swap if in wrong order - O(n²)",
+    selection: "Find minimum element and place it at correct position - O(n²)",
+    insertion: "Build sorted array by inserting elements one by one - O(n²)"
+  };
+
   useEffect(() => {
-    reset();
+    if (algorithm) {
+      reset();
+    }
   }, [algorithm]);
 
   const parseArray = () => {
@@ -47,6 +61,8 @@ export default function SortingVisualizer() {
   const generateSteps = () => {
     const arr = parseArray();
     let steps: LogStep[] = [];
+    
+    if (!algorithm) return steps;
     
     if (algorithm === 'bubble') {
       steps = simulateBubbleSort(arr);
@@ -100,42 +116,71 @@ export default function SortingVisualizer() {
   const currentHighlight = logs[logs.length - 1]?.highlightIndices;
   const currentType = logs[logs.length - 1]?.type === 'swap' ? 'swap' : 'compare';
 
+  // Show algorithm selector if none selected
+  if (!algorithm) {
+    return (
+      <div className="min-h-screen p-4 md:p-8 flex flex-col gap-8 max-w-6xl mx-auto">
+        <div className="scanline"></div>
+
+        <header className="border-b-2 border-primary pb-6">
+          <Link href="/">
+            <a className="flex items-center gap-2 text-primary hover:text-white transition-colors mb-4">
+              <ArrowLeft size={20} /> BACK
+            </a>
+          </Link>
+          <h1 className="text-5xl md:text-6xl font-black text-primary glow-text tracking-tighter">
+            SELECT_SORT_TYPE
+          </h1>
+        </header>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {(['bubble', 'selection', 'insertion'] as SortAlgorithm[]).map((algo) => (
+            <button
+              key={algo}
+              onClick={() => setAlgorithm(algo)}
+              className="group bg-black border-2 border-primary/30 hover:border-primary p-8 transition-all hover:shadow-[0_0_30px_rgba(0,255,65,0.2)] text-left"
+            >
+              <h2 className="text-2xl font-black text-primary group-hover:text-white mb-3 transition-colors">
+                {algorithmNames[algo]}
+              </h2>
+              <p className="text-primary/70 text-sm font-mono">
+                {algorithmDescriptions[algo]}
+              </p>
+              <div className="mt-6 text-primary text-sm font-bold group-hover:translate-x-2 transition-transform">
+                → START
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen p-4 md:p-8 flex flex-col gap-6 max-w-7xl mx-auto">
       <div className="scanline"></div>
 
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-primary pb-4 gap-4">
+      <header className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-primary pb-4 gap-4">
         <Link href="/">
           <a className="flex items-center gap-2 text-primary hover:text-white transition-colors">
             <ArrowLeft size={20} /> BACK
           </a>
         </Link>
-        <h1 className="text-3xl md:text-4xl font-black text-primary glow-text">
-          SORTING_TECHNIQUES
-        </h1>
-        <div className="flex gap-2 font-mono text-xs md:text-sm">
-          <Button 
-            variant="outline" 
-            className={cn("border-primary text-primary hover:bg-primary hover:text-black rounded-none transition-all", algorithm === 'bubble' && "bg-primary text-black")}
-            onClick={() => { setAlgorithm('bubble'); reset(); }}
-          >
-            BUBBLE
-          </Button>
-          <Button 
-            variant="outline" 
-            className={cn("border-primary text-primary hover:bg-primary hover:text-black rounded-none transition-all", algorithm === 'selection' && "bg-primary text-black")}
-            onClick={() => { setAlgorithm('selection'); reset(); }}
-          >
-            SELECTION
-          </Button>
-          <Button 
-            variant="outline" 
-            className={cn("border-primary text-primary hover:bg-primary hover:text-black rounded-none transition-all", algorithm === 'insertion' && "bg-primary text-black")}
-            onClick={() => { setAlgorithm('insertion'); reset(); }}
-          >
-            INSERTION
-          </Button>
+        <div className="text-center grow">
+          <h1 className="text-4xl md:text-5xl font-black text-primary glow-text mb-2">
+            {algorithmNames[algorithm]}
+          </h1>
+          <p className="text-primary/60 font-mono text-xs md:text-sm">
+            {algorithmDescriptions[algorithm]}
+          </p>
         </div>
+        <Button 
+          variant="outline" 
+          className="border-primary text-primary hover:bg-primary hover:text-black rounded-none transition-all text-sm"
+          onClick={() => setAlgorithm(null)}
+        >
+          CHANGE
+        </Button>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 grow">
