@@ -16,8 +16,6 @@ export function ArrayDisplay({ arr, highlightIndices = [], type = 'none' }: Arra
   
   // Varied width classes (from narrow to wide) for visual interest
   const widthClasses = ['w-3', 'w-8', 'w-4', 'w-10', 'w-5', 'w-9', 'w-4', 'w-7', 'w-6', 'w-11', 'w-3', 'w-8', 'w-5', 'w-10', 'w-6'];
-  // Height scale multipliers to vary bar proportions (same height only if same value)
-  const heightScales = [1.1, 0.8, 1.3, 0.9, 1.2, 0.7, 1.4, 0.85, 1.0, 0.95, 1.2, 0.8, 1.1, 0.9, 1.3];
 
   return (
     <div className="w-full rounded-lg gradient-card relative overflow-hidden group bg-gradient-to-b from-blue-950/50 to-blue-900/30 border-2 border-blue-400/20">
@@ -42,10 +40,8 @@ export function ArrayDisplay({ arr, highlightIndices = [], type = 'none' }: Arra
             else barColor = "bg-gradient-to-t from-blue-600 to-blue-400 border-blue-300";
           }
 
-          // Normalize height: (val / maxVal) * barMaxHeight with scaling for visual variety
-          const baseHeight = (val / maxVal) * barMaxHeight;
-          const scaleMultiplier = heightScales[idx % heightScales.length];
-          const normalizedHeight = baseHeight * scaleMultiplier;
+          // Height is purely proportional to the value: higher number = taller bar
+          const normalizedHeight = (val / maxVal) * barMaxHeight;
           const barWidth = widthClasses[idx % widthClasses.length];
 
           return (
