@@ -21,7 +21,10 @@ export default function SearchingVisualizer() {
   const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   const algoParam = searchParams.get('algo') as SearchAlgorithm | null;
   
-  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>(algoParam || "linear");
+  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>(() => {
+    // Always return algo from URL if provided, otherwise null (show selection)
+    return algoParam || null;
+  });
   const [arrayInput, setArrayInput] = useState("12, 25, 34, 64, 22, 11, 90");
   const [searchTarget, setSearchTarget] = useState("22");
   

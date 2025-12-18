@@ -22,7 +22,10 @@ export default function SortingVisualizer() {
   const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
   const algoParam = searchParams.get('algo') as SortAlgorithm | null;
   
-  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>(algoParam || "bubble");
+  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>(() => {
+    // Always return algo from URL if provided, otherwise null (show selection)
+    return algoParam || null;
+  });
   const [arrayInput, setArrayInput] = useState("64, 34, 25, 12, 22, 11, 90");
   
   const [currentArr, setCurrentArr] = useState<number[]>([]);
