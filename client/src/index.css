@@ -5,75 +5,165 @@
 
 @theme inline {
   --font-mono: 'Fira Code', 'Courier New', monospace;
-  
-  --color-terminal-bg: #0a0a0a;
-  --color-terminal-text: #00ff41;
-  --color-terminal-dim: #008F11;
-  --color-terminal-highlight: #e0e0e0;
-  --color-terminal-cursor: #00ff41;
-  --color-terminal-error: #ff3333;
-  --color-terminal-border: #333333;
 }
 
 :root {
-  --background: 0 0% 4%; /* #0a0a0a */
-  --foreground: 135 100% 50%; /* #00ff41 */
+  --background: 210 40% 8%; /* Deep blue */
+  --foreground: 220 100% 60%; /* Bright blue */
   
-  /* Standard shadcn variables mapped to terminal theme */
-  --card: 0 0% 6%;
-  --card-foreground: 135 100% 50%;
-  --popover: 0 0% 6%;
-  --popover-foreground: 135 100% 50%;
-  --primary: 135 100% 50%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 0 0% 15%;
-  --secondary-foreground: 135 100% 50%;
-  --muted: 0 0% 15%;
-  --muted-foreground: 135 100% 30%;
-  --accent: 135 100% 10%;
-  --accent-foreground: 135 100% 60%;
+  /* Standard shadcn variables mapped to blue/white theme */
+  --card: 210 40% 12%;
+  --card-foreground: 220 100% 60%;
+  --popover: 210 40% 12%;
+  --popover-foreground: 220 100% 60%;
+  --primary: 220 100% 60%;
+  --primary-foreground: 210 40% 8%;
+  --secondary: 200 70% 50%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 210 20% 30%;
+  --muted-foreground: 220 100% 70%;
+  --accent: 210 80% 50%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 100% 50%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 20%;
-  --input: 0 0% 20%;
-  --ring: 135 100% 50%;
-  --radius: 0px; /* Terminal style usually has sharp corners */
+  --border: 210 30% 25%;
+  --input: 210 30% 20%;
+  --ring: 220 100% 60%;
+  --radius: 8px;
 }
 
 body {
-  background-color: var(--color-terminal-bg);
-  color: var(--color-terminal-text);
+  background: linear-gradient(135deg, #0f1e3d 0%, #1a2a4d 50%, #0d1b33 100%);
+  color: hsl(220 100% 60%);
   font-family: var(--font-mono);
   overflow-x: hidden;
+  min-height: 100vh;
 }
 
-/* Scrollbar styling for that retro feel */
+/* Animated gradient background */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(96, 165, 250, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: gradientShift 8s ease infinite;
+}
+
+/* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: hsl(210 40% 12%);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border: 1px solid #000;
+  background: hsl(220 100% 60%);
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #444;
+  background: hsl(220 100% 70%);
 }
 
-/* Blink animation for cursor */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+/* Animations */
+@keyframes floatingIcon {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
 }
 
-.cursor-blink {
-  animation: blink 1s step-end infinite;
+@keyframes glowPulse {
+  0%, 100% { text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(96, 165, 250, 0.3); }
+  50% { text-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 40px rgba(96, 165, 250, 0.5); }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.glow-text {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.5), 0 0 20px rgba(96, 165, 250, 0.3);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+.glow-text-white {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(96, 165, 250, 0.3);
+}
+
+.float-icon {
+  animation: floatingIcon 3s ease-in-out infinite;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.shimmer-effect {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(96, 165, 250, 0.05) 100%);
+  border: 1px solid rgba(96, 165, 250, 0.3);
 }
 
 .scanline {
@@ -86,15 +176,21 @@ body {
     to bottom,
     rgba(255, 255, 255, 0),
     rgba(255, 255, 255, 0) 50%,
-    rgba(0, 0, 0, 0.1) 50%,
-    rgba(0, 0, 0, 0.1)
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.05)
   );
   background-size: 100% 4px;
   pointer-events: none;
-  z-index: 9999;
-  opacity: 0.15;
+  z-index: 9998;
+  opacity: 0.08;
 }
 
-.glow-text {
-  text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+/* Blue glow effect */
+.blue-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(96, 165, 250, 0.3);
+}
+
+.blue-glow-hover:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.7), 0 0 60px rgba(96, 165, 250, 0.5);
+  transition: box-shadow 0.3s ease;
 }

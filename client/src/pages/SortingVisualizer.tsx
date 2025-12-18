@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
+import { motion } from "framer-motion";
 import { ConsoleWindow } from "@/components/ConsoleWindow";
 import { ArrayDisplay } from "@/components/ArrayDisplay";
 import { Button } from "@/components/ui/button";
@@ -119,37 +120,39 @@ export default function SortingVisualizer() {
   // Show algorithm selector if none selected
   if (!algorithm) {
     return (
-      <div className="min-h-screen p-4 md:p-8 flex flex-col gap-8 max-w-6xl mx-auto">
+      <div className="relative min-h-screen p-4 md:p-8 flex flex-col gap-8 max-w-6xl mx-auto overflow-hidden">
         <div className="scanline"></div>
 
-        <header className="border-b-2 border-primary pb-6">
+        <header className="relative z-10 border-b-2 border-cyan-400/30 pb-6">
           <Link href="/">
-            <a className="flex items-center gap-2 text-primary hover:text-white transition-colors mb-4">
+            <a className="flex items-center gap-2 text-cyan-300 hover:text-white transition-colors mb-4 font-bold">
               <ArrowLeft size={20} /> BACK
             </a>
           </Link>
-          <h1 className="text-5xl md:text-6xl font-black text-primary glow-text tracking-tighter">
+          <h1 className="text-5xl md:text-6xl font-black text-white glow-text tracking-tighter">
             SELECT_SORT_TYPE
           </h1>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           {(['bubble', 'selection', 'insertion'] as SortAlgorithm[]).map((algo) => (
-            <button
+            <motion.button
               key={algo}
               onClick={() => setAlgorithm(algo)}
-              className="group bg-black border-2 border-primary/30 hover:border-primary p-8 transition-all hover:shadow-[0_0_30px_rgba(0,255,65,0.2)] text-left"
+              className="group relative bg-gradient-to-br from-cyan-950/80 to-blue-900/50 border-2 border-cyan-400/30 hover:border-cyan-300/50 p-8 transition-all rounded-lg text-left overflow-hidden"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(34, 211, 238, 0.5)' }}
             >
-              <h2 className="text-2xl font-black text-primary group-hover:text-white mb-3 transition-colors">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+              <h2 className="relative text-2xl font-black text-white mb-3 group-hover:text-cyan-200 transition-colors">
                 {algorithmNames[algo]}
               </h2>
-              <p className="text-primary/70 text-sm font-mono">
+              <p className="relative text-cyan-100/80 text-sm font-mono">
                 {algorithmDescriptions[algo]}
               </p>
-              <div className="mt-6 text-primary text-sm font-bold group-hover:translate-x-2 transition-transform">
+              <div className="relative mt-6 text-cyan-300 text-sm font-bold group-hover:translate-x-2 transition-transform">
                 → START
               </div>
-            </button>
+            </motion.button>
           ))}
         </div>
       </div>
@@ -157,30 +160,32 @@ export default function SortingVisualizer() {
   }
 
   return (
-    <div className="min-h-screen p-4 md:p-8 flex flex-col gap-6 max-w-7xl mx-auto">
+    <div className="relative min-h-screen p-4 md:p-8 flex flex-col gap-6 max-w-7xl mx-auto overflow-hidden">
       <div className="scanline"></div>
 
-      <header className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-primary pb-4 gap-4">
+      <header className="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center border-b-2 border-cyan-400/30 pb-6 gap-4">
         <Link href="/">
-          <a className="flex items-center gap-2 text-primary hover:text-white transition-colors">
+          <a className="flex items-center gap-2 text-cyan-300 hover:text-white transition-colors font-bold">
             <ArrowLeft size={20} /> BACK
           </a>
         </Link>
         <div className="text-center grow">
-          <h1 className="text-4xl md:text-5xl font-black text-primary glow-text mb-2">
+          <h1 className="text-4xl md:text-5xl font-black text-white glow-text mb-2">
             {algorithmNames[algorithm]}
           </h1>
-          <p className="text-primary/60 font-mono text-xs md:text-sm">
+          <p className="text-cyan-200/80 font-mono text-xs md:text-sm">
             {algorithmDescriptions[algorithm]}
           </p>
         </div>
-        <Button 
-          variant="outline" 
-          className="border-primary text-primary hover:bg-primary hover:text-black rounded-none transition-all text-sm"
-          onClick={() => setAlgorithm(null)}
-        >
-          CHANGE
-        </Button>
+        <motion.div whileHover={{ scale: 1.05 }}>
+          <Button 
+            variant="outline" 
+            className="border-cyan-400 text-cyan-300 hover:bg-cyan-600 hover:text-white rounded-lg transition-all text-sm font-bold"
+            onClick={() => setAlgorithm(null)}
+          >
+            CHANGE
+          </Button>
+        </motion.div>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 grow">
