@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { ConsoleWindow } from "@/components/ConsoleWindow";
 import { ArrayDisplay } from "@/components/ArrayDisplay";
@@ -17,7 +17,11 @@ import { cn } from "@/lib/utils";
 type SearchAlgorithm = "linear" | "binary";
 
 export default function SearchingVisualizer() {
-  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>("linear");
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const algoParam = searchParams.get('algo') as SearchAlgorithm | null;
+  
+  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>(algoParam || "linear");
   const [arrayInput, setArrayInput] = useState("12, 25, 34, 64, 22, 11, 90");
   const [searchTarget, setSearchTarget] = useState("22");
   

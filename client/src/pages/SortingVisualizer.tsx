@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { ConsoleWindow } from "@/components/ConsoleWindow";
 import { ArrayDisplay } from "@/components/ArrayDisplay";
@@ -18,7 +18,11 @@ import { cn } from "@/lib/utils";
 type SortAlgorithm = "bubble" | "selection" | "insertion";
 
 export default function SortingVisualizer() {
-  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>("bubble");
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(typeof window !== 'undefined' ? window.location.search : '');
+  const algoParam = searchParams.get('algo') as SortAlgorithm | null;
+  
+  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>(algoParam || "bubble");
   const [arrayInput, setArrayInput] = useState("64, 34, 25, 12, 22, 11, 90");
   
   const [currentArr, setCurrentArr] = useState<number[]>([]);

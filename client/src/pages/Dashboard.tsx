@@ -79,18 +79,26 @@ export default function Dashboard() {
                   ✦ Explore fundamental search algorithms to locate elements efficiently
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <motion.span 
-                    className="bg-gradient-to-r from-blue-600/40 to-cyan-600/40 border border-blue-400/50 px-3 py-1 text-xs text-blue-200 rounded-full font-mono"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    LINEAR_SEARCH
-                  </motion.span>
-                  <motion.span 
-                    className="bg-gradient-to-r from-blue-600/40 to-cyan-600/40 border border-blue-400/50 px-3 py-1 text-xs text-blue-200 rounded-full font-mono"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    BINARY_SEARCH
-                  </motion.span>
+                  <Link href="/searching?algo=linear">
+                    <a>
+                      <motion.span 
+                        className="bg-gradient-to-r from-blue-600/40 to-cyan-600/40 border border-blue-400/50 px-3 py-1 text-xs text-blue-200 rounded-full font-mono cursor-pointer hover:border-blue-300 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        LINEAR_SEARCH
+                      </motion.span>
+                    </a>
+                  </Link>
+                  <Link href="/searching?algo=binary">
+                    <a>
+                      <motion.span 
+                        className="bg-gradient-to-r from-blue-600/40 to-cyan-600/40 border border-blue-400/50 px-3 py-1 text-xs text-blue-200 rounded-full font-mono cursor-pointer hover:border-blue-300 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        BINARY_SEARCH
+                      </motion.span>
+                    </a>
+                  </Link>
                 </div>
                 <motion.div 
                   className="flex items-center gap-2 text-blue-300 text-sm font-bold group-hover:text-cyan-300 transition-colors"
@@ -125,24 +133,36 @@ export default function Dashboard() {
                   ✦ Learn how different algorithms organize data efficiently
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
-                  <motion.span 
-                    className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    BUBBLE_SORT
-                  </motion.span>
-                  <motion.span 
-                    className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    SELECTION_SORT
-                  </motion.span>
-                  <motion.span 
-                    className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono"
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    INSERTION_SORT
-                  </motion.span>
+                  <Link href="/sorting?algo=bubble">
+                    <a>
+                      <motion.span 
+                        className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono cursor-pointer hover:border-cyan-300 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        BUBBLE_SORT
+                      </motion.span>
+                    </a>
+                  </Link>
+                  <Link href="/sorting?algo=selection">
+                    <a>
+                      <motion.span 
+                        className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono cursor-pointer hover:border-cyan-300 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        SELECTION_SORT
+                      </motion.span>
+                    </a>
+                  </Link>
+                  <Link href="/sorting?algo=insertion">
+                    <a>
+                      <motion.span 
+                        className="bg-gradient-to-r from-cyan-600/40 to-blue-600/40 border border-cyan-400/50 px-3 py-1 text-xs text-cyan-200 rounded-full font-mono cursor-pointer hover:border-cyan-300 transition-colors"
+                        whileHover={{ scale: 1.1 }}
+                      >
+                        INSERTION_SORT
+                      </motion.span>
+                    </a>
+                  </Link>
                 </div>
                 <motion.div 
                   className="flex items-center gap-2 text-cyan-300 text-sm font-bold group-hover:text-blue-300 transition-colors"
