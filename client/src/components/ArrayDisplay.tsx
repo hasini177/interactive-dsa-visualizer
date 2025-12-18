@@ -13,6 +13,9 @@ export function ArrayDisplay({ arr, highlightIndices = [], type = 'none' }: Arra
   const maxVal = Math.max(...arr, 1);
   const containerHeight = 160; // Fixed height in px
   const barMaxHeight = containerHeight - 30; // Reserve space for labels
+  
+  // Varied width classes for visual interest
+  const widthClasses = ['w-5', 'w-7', 'w-6', 'w-9', 'w-8', 'w-5', 'w-7', 'w-6', 'w-9', 'w-8', 'w-5', 'w-7', 'w-6', 'w-9', 'w-8'];
 
   return (
     <div className="w-full rounded-lg gradient-card relative overflow-hidden group bg-gradient-to-b from-blue-950/50 to-blue-900/30 border-2 border-blue-400/20">
@@ -39,11 +42,12 @@ export function ArrayDisplay({ arr, highlightIndices = [], type = 'none' }: Arra
 
           // Normalize height: (val / maxVal) * barMaxHeight
           const normalizedHeight = (val / maxVal) * barMaxHeight;
+          const barWidth = widthClasses[idx % widthClasses.length];
 
           return (
             <motion.div 
               key={idx} 
-              className="flex flex-col items-center justify-end h-full gap-1 w-8 md:w-10 lg:w-12 relative group/bar"
+              className={`flex flex-col items-center justify-end h-full gap-1 ${barWidth} relative group/bar`}
               initial={{ scale: 0, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: idx * 0.05 }}
