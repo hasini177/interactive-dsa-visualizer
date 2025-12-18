@@ -190,33 +190,33 @@ export default function SortingVisualizer() {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 grow">
         <div className="lg:col-span-3 flex flex-col gap-6">
-          <div className="bg-card border border-primary/30 p-4 relative">
-            <div className="absolute -top-3 left-3 bg-background px-2 text-primary text-xs font-bold">PARAMETERS</div>
-            <div className="space-y-4 mt-2">
+          <div className="bg-gradient-to-br from-cyan-950/80 to-blue-900/50 border-2 border-cyan-400/30 rounded-lg p-5 relative">
+            <div className="absolute -top-3 left-4 bg-background px-3 py-1 text-cyan-300 text-xs font-bold rounded-full border border-cyan-400/50">◆ PARAMETERS</div>
+            <div className="space-y-5 mt-4">
               <div>
-                <label className="text-primary/70 text-xs font-mono uppercase mb-1 block">Array (CSV)</label>
+                <label className="text-cyan-300 text-xs font-mono uppercase mb-2 block font-bold tracking-wide">Array (CSV)</label>
                 <Input 
                   value={arrayInput} 
                   onChange={(e) => { setArrayInput(e.target.value); reset(); }}
-                  className="bg-black border-primary/50 text-primary font-mono rounded-none focus-visible:ring-primary h-10" 
+                  className="bg-blue-900/40 border-cyan-400/40 text-cyan-200 font-mono rounded-lg focus-visible:ring-cyan-400 h-10 focus-visible:border-cyan-300" 
                 />
               </div>
             </div>
           </div>
 
-          <div className="bg-card border border-primary/30 p-4 relative grow flex flex-col gap-4">
-            <div className="absolute -top-3 left-3 bg-background px-2 text-primary text-xs font-bold">CONTROLS</div>
+          <div className="bg-gradient-to-br from-cyan-950/80 to-blue-900/50 border-2 border-cyan-400/30 rounded-lg p-5 relative grow flex flex-col gap-4">
+            <div className="absolute -top-3 left-4 bg-background px-3 py-1 text-cyan-300 text-xs font-bold rounded-full border border-cyan-400/50">◆ CONTROLS</div>
             <Button 
-              className="w-full bg-primary text-black hover:bg-primary/90 font-bold rounded-none h-12 text-lg"
+              className="w-full bg-gradient-to-r from-cyan-500 to-cyan-600 text-black hover:from-cyan-400 hover:to-cyan-500 font-bold rounded-lg h-12 text-base transition-all"
               onClick={handleStart}
               disabled={isRunning && currentStepIndex < allSteps.length}
             >
               <Play className="mr-2 h-5 w-5" /> {isRunning ? 'SORTING...' : 'EXECUTE'}
             </Button>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-3 mt-2">
               <Button 
                 variant="outline" 
-                className="border-primary text-primary hover:bg-primary/20 rounded-none"
+                className="border-cyan-400/50 text-cyan-300 hover:bg-cyan-600/20 rounded-lg hover:border-cyan-300"
                 onClick={handleStep}
                 disabled={isRunning}
               >
@@ -224,22 +224,22 @@ export default function SortingVisualizer() {
               </Button>
               <Button 
                 variant="outline" 
-                className="border-primary text-primary hover:bg-primary/20 rounded-none"
+                className="border-cyan-400/50 text-cyan-300 hover:bg-cyan-600/20 rounded-lg hover:border-cyan-300"
                 onClick={reset}
               >
                 <RotateCcw className="mr-2 h-4 w-4" /> RESET
               </Button>
             </div>
-            <div className="mt-auto border-t border-dashed border-primary/30 pt-4 text-xs text-primary/60 font-mono">
-              <div className="flex justify-between">
-                <span>STATUS:</span>
-                <span className={isRunning ? "text-green-400 animate-pulse" : "text-yellow-600"}>
+            <div className="mt-auto border-t border-dashed border-cyan-400/30 pt-4 text-xs text-cyan-300/70 font-mono">
+              <div className="flex justify-between mb-2">
+                <span className="font-bold">STATUS:</span>
+                <span className={isRunning ? "text-green-400 animate-pulse font-bold" : "text-yellow-400 font-bold"}>
                   {isRunning ? "SORTING" : "IDLE"}
                 </span>
               </div>
-              <div className="flex justify-between mt-1">
-                <span>STEPS:</span>
-                <span>{currentStepIndex} / {allSteps.length > 0 ? allSteps.length : '-'}</span>
+              <div className="flex justify-between">
+                <span className="font-bold">STEPS:</span>
+                <span className="text-cyan-200">{currentStepIndex} / {allSteps.length > 0 ? allSteps.length : '-'}</span>
               </div>
             </div>
           </div>
