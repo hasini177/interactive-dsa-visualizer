@@ -66,12 +66,11 @@ export function ArrayDisplay({ arr, highlightIndices = [], type = 'none' }: Arra
               <motion.div 
                 layout
                 className={cn(
-                  "w-full border-2 transition-all duration-200 rounded-md relative cursor-pointer flex-1 min-h-[8px] max-h-[160px]",
+                  "w-full border-2 transition-all duration-200 rounded-md relative cursor-pointer",
                   barColor
                 )}
                 style={{ 
-                  height: `${Math.max(normalizedHeight, 8)}px`,
-                  maxHeight: `${barMaxHeight}px`
+                  height: `${Math.max(normalizedHeight, 8)}px`
                 }}
                 whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
               >
