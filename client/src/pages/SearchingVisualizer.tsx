@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 type SearchAlgorithm = "linear" | "binary";
 
 export default function SearchingVisualizer() {
-  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>(null);
+  const [algorithm, setAlgorithm] = useState<SearchAlgorithm | null>("linear");
   const [arrayInput, setArrayInput] = useState("12, 25, 34, 64, 22, 11, 90");
   const [searchTarget, setSearchTarget] = useState("22");
   

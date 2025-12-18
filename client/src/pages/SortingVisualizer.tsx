@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 type SortAlgorithm = "bubble" | "selection" | "insertion";
 
 export default function SortingVisualizer() {
-  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>(null);
+  const [algorithm, setAlgorithm] = useState<SortAlgorithm | null>("bubble");
   const [arrayInput, setArrayInput] = useState("64, 34, 25, 12, 22, 11, 90");
   
   const [currentArr, setCurrentArr] = useState<number[]>([]);
