@@ -1,2 +1,17 @@
-# interactive-dsa-visualizer
-This project is an educational tool designed to make learning data structures, searching, and sorting algorithms easier and more intuitive. Users can interact with the visualizer to see how operations like insertion, deletion, traversal, searching, and sorting work in real time.
+# Interactive DSA Visualizer
+
+Visualize Stack, Queue, Linked List, Binary Tree, Graph, Searching, and Sorting algorithms with animations.
+
+## Features
+- Stack, Queue, Linked List, Binary Tree, Graph
+- Linear & Binary Search
+- Bubble, Selection, Insertion Sort
+- Step forward/back, Play/Pause controls
+
+## Tech Stack
+- React
+- TailwindCSS
+- Framer Motion
+
+## Live Demo
+[View Live App](https://algo-visualizer-1--honeetadikonda1.replit.app)
