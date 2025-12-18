@@ -7,6 +7,12 @@ import NotFound from "@/pages/not-found";
 import Dashboard from "@/pages/Dashboard";
 import SearchingVisualizer from "@/pages/SearchingVisualizer";
 import SortingVisualizer from "@/pages/SortingVisualizer";
+import StacksQueuesVisualizer from "@/pages/StacksQueuesVisualizer";
+import LinkedListVisualizer from "@/pages/LinkedListVisualizer";
+import SlidingWindowVisualizer from "@/pages/SlidingWindowVisualizer";
+import TwoPointersVisualizer from "@/pages/TwoPointersVisualizer";
+import TreesVisualizer from "@/pages/TreesVisualizer";
+import GraphsVisualizer from "@/pages/GraphsVisualizer";
 
 function Router() {
   return (
@@ -14,6 +20,12 @@ function Router() {
       <Route path="/" component={Dashboard}/>
       <Route path="/searching" component={SearchingVisualizer}/>
       <Route path="/sorting" component={SortingVisualizer}/>
+      <Route path="/stacks-queues" component={StacksQueuesVisualizer}/>
+      <Route path="/linked-lists" component={LinkedListVisualizer}/>
+      <Route path="/sliding-window" component={SlidingWindowVisualizer}/>
+      <Route path="/two-pointers" component={TwoPointersVisualizer}/>
+      <Route path="/trees" component={TreesVisualizer}/>
+      <Route path="/graphs" component={GraphsVisualizer}/>
       <Route component={NotFound} />
     </Switch>
   );
