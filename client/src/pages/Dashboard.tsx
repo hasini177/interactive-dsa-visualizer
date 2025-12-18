@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "wouter";
-import { Search, Heading3, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { QuickSearchVisualizer } from "@/components/QuickSearchVisualizer";
+import { QuickSortVisualizer } from "@/components/QuickSortVisualizer";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -65,17 +67,14 @@ export default function Dashboard() {
               </div>
               
               <div className="relative z-10 bg-gradient-to-br from-blue-950/80 to-blue-900/50 border-2 border-blue-400/30 group-hover:border-blue-300/50 rounded-xl p-8 transition-all duration-300 h-full flex flex-col group-hover:shadow-[0_0_40px_rgba(59,130,246,0.4)]">
-                <div className="flex items-center gap-4 mb-6">
-                  <motion.div
-                    whileHover={{ rotate: 360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Search className="w-14 h-14 text-blue-300 group-hover:text-white transition-colors float-icon" />
-                  </motion.div>
-                  <h2 className="text-3xl md:text-4xl font-black text-white glow-text-white group-hover:scale-105 transition-transform">
-                    SEARCHING
-                  </h2>
+                <h2 className="text-3xl md:text-4xl font-black text-white glow-text-white mb-4 group-hover:scale-105 transition-transform">
+                  SEARCHING
+                </h2>
+                
+                <div className="mb-6 p-4 bg-blue-900/30 rounded-lg border border-blue-400/20">
+                  <QuickSearchVisualizer />
                 </div>
+                
                 <p className="text-blue-100/80 text-sm md:text-base font-mono mb-6 flex-grow">
                   ✦ Explore fundamental search algorithms to locate elements efficiently
                 </p>
@@ -114,17 +113,14 @@ export default function Dashboard() {
               </div>
               
               <div className="relative z-10 bg-gradient-to-br from-blue-950/80 to-cyan-900/50 border-2 border-cyan-400/30 group-hover:border-cyan-300/50 rounded-xl p-8 transition-all duration-300 h-full flex flex-col group-hover:shadow-[0_0_40px_rgba(34,211,238,0.4)]">
-                <div className="flex items-center gap-4 mb-6">
-                  <motion.div
-                    whileHover={{ rotate: -360 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <Heading3 className="w-14 h-14 text-cyan-300 group-hover:text-white transition-colors float-icon" />
-                  </motion.div>
-                  <h2 className="text-3xl md:text-4xl font-black text-white glow-text-white group-hover:scale-105 transition-transform">
-                    SORTING
-                  </h2>
+                <h2 className="text-3xl md:text-4xl font-black text-white glow-text-white mb-4 group-hover:scale-105 transition-transform">
+                  SORTING
+                </h2>
+                
+                <div className="mb-6 p-4 bg-cyan-900/30 rounded-lg border border-cyan-400/20">
+                  <QuickSortVisualizer />
                 </div>
+                
                 <p className="text-cyan-100/80 text-sm md:text-base font-mono mb-6 flex-grow">
                   ✦ Learn how different algorithms organize data efficiently
                 </p>
